@@ -130,16 +130,16 @@ function Portfolio() {
           style={{ background: "var(--gradient-hero)" }}
         />
         <div className="absolute inset-0 grid-bg opacity-60" />
-        <HeroScene />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none z-20" />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-40 pb-24 md:pt-48">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-40 pb-24 md:pt-48 grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="max-w-3xl"
+            className="relative z-10"
           >
+
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse" />
               Available for Senior / Staff DevOps roles · Munich · Remote EU
