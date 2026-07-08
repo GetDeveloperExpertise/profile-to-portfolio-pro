@@ -191,11 +191,12 @@ function Portfolio() {
             transition={{ duration: 1, delay: 0.2 }}
             className="relative h-[420px] sm:h-[500px] lg:h-[560px] hidden sm:block"
           >
-            <HeroScene />
             <div
-              className="absolute inset-0 rounded-full blur-3xl opacity-40 pointer-events-none"
+              className="absolute inset-6 rounded-full blur-3xl opacity-30 pointer-events-none"
               style={{ background: "var(--gradient-text)" }}
             />
+            <HeroScene />
+
           </motion.div>
         </div>
       </section>
