@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#certifications", label: "Credentials" },
-  { href: "#contact", label: "Contact" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "certifications", label: "Credentials" },
+  { id: "contact", label: "Contact" },
 ];
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,30 +32,36 @@ export function Navbar() {
             scrolled ? "glass shadow-[var(--shadow-elevated)]" : ""
           }`}
         >
-          <a href="#top" className="flex items-center gap-2 font-display font-semibold">
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 font-display font-semibold"
+          >
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-cyan to-violet text-primary-foreground text-sm">
               W
             </span>
             <span className="hidden sm:inline">Waqas Ahmed</span>
-          </a>
+          </button>
           <ul className="hidden md:flex items-center gap-1 text-sm text-muted-foreground">
             {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
+              <li key={l.id}>
+                <button
+                  type="button"
+                  onClick={() => scrollToId(l.id)}
                   className="px-3 py-2 rounded-full hover:text-foreground hover:bg-white/5 transition-colors"
                 >
                   {l.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => scrollToId("contact")}
             className="rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-primary transition-colors"
           >
             Hire me
-          </a>
+          </button>
         </nav>
       </div>
     </header>

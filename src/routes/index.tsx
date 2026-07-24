@@ -157,18 +157,20 @@ function Portfolio() {
               CI/CD are my daily tools — reliability is the outcome.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#contact"
+              <button
+                type="button"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="group relative rounded-full bg-foreground text-background px-6 py-3 text-sm font-semibold shadow-[var(--shadow-cyan)] hover:shadow-[var(--shadow-glow)] transition-shadow"
               >
                 Book an interview →
-              </a>
-              <a
-                href="#experience"
+              </button>
+              <button
+                type="button"
+                onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
                 className="rounded-full border border-border bg-white/5 backdrop-blur px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors"
               >
                 See the work
-              </a>
+              </button>
             </div>
 
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
