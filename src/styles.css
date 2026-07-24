@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -34,46 +34,54 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-cyan: var(--cyan);
+  --color-aurora: var(--aurora);
+  --color-mint: var(--mint);
   --color-violet: var(--violet);
-  --color-lime: var(--lime);
 }
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.14 0.02 265);
-  --foreground: oklch(0.97 0.01 240);
-  --card: oklch(0.18 0.025 265);
-  --card-foreground: oklch(0.97 0.01 240);
-  --popover: oklch(0.18 0.025 265);
-  --popover-foreground: oklch(0.97 0.01 240);
-  --primary: oklch(0.82 0.16 200);
-  --primary-foreground: oklch(0.12 0.02 265);
-  --secondary: oklch(0.22 0.03 265);
-  --secondary-foreground: oklch(0.97 0.01 240);
-  --muted: oklch(0.22 0.03 265);
-  --muted-foreground: oklch(0.65 0.02 260);
-  --accent: oklch(0.65 0.22 295);
-  --accent-foreground: oklch(0.98 0.01 240);
+  /* Glass Aurora palette: #1a1a2e, #16213e, #4ade80, #a78bfa */
+  --background: #0f1024;
+  --foreground: #f4f4fb;
+  --card: #16213e;
+  --card-foreground: #f4f4fb;
+  --popover: #16213e;
+  --popover-foreground: #f4f4fb;
+  --primary: #4ade80;
+  --primary-foreground: #0b0c1e;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #f4f4fb;
+  --muted: #1a1a2e;
+  --muted-foreground: #a0a3c2;
+  --accent: #a78bfa;
+  --accent-foreground: #0b0c1e;
   --destructive: oklch(0.62 0.24 27);
-  --destructive-foreground: oklch(0.98 0.01 240);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.82 0.16 200);
+  --destructive-foreground: #ffffff;
+  --border: rgba(167, 139, 250, 0.14);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #a78bfa;
 
-  --cyan: oklch(0.82 0.16 200);
-  --violet: oklch(0.65 0.22 295);
-  --lime: oklch(0.88 0.18 130);
+  --aurora: #a78bfa;
+  --mint: #4ade80;
+  --violet: #a78bfa;
 
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.65 0.22 295 / 0.25), transparent 60%),
-                   radial-gradient(ellipse 60% 50% at 80% 40%, oklch(0.82 0.16 200 / 0.18), transparent 60%),
-                   linear-gradient(180deg, oklch(0.14 0.02 265), oklch(0.10 0.02 265));
-  --gradient-text: linear-gradient(135deg, oklch(0.82 0.16 200), oklch(0.65 0.22 295));
-  --gradient-border: linear-gradient(135deg, oklch(0.82 0.16 200 / 0.6), oklch(0.65 0.22 295 / 0.6));
+  --gradient-hero:
+    radial-gradient(ellipse 90% 60% at 15% 10%, rgba(167, 139, 250, 0.35), transparent 60%),
+    radial-gradient(ellipse 70% 55% at 85% 20%, rgba(74, 222, 128, 0.22), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(22, 33, 62, 0.9), transparent 70%),
+    linear-gradient(180deg, #0f1024 0%, #16213e 100%);
+  --gradient-aurora:
+    conic-gradient(from 180deg at 50% 50%, #a78bfa, #4ade80, #22d3ee, #a78bfa);
+  --gradient-text: linear-gradient(135deg, #4ade80 0%, #a78bfa 60%, #22d3ee 100%);
+  --gradient-mesh:
+    radial-gradient(at 20% 20%, rgba(167, 139, 250, 0.35), transparent 50%),
+    radial-gradient(at 80% 60%, rgba(74, 222, 128, 0.25), transparent 55%),
+    radial-gradient(at 60% 90%, rgba(34, 211, 238, 0.2), transparent 60%);
 
-  --shadow-glow: 0 0 60px -10px oklch(0.65 0.22 295 / 0.5);
-  --shadow-cyan: 0 0 40px -8px oklch(0.82 0.16 200 / 0.6);
-  --shadow-elevated: 0 20px 60px -20px oklch(0 0 0 / 0.6);
+  --shadow-glow: 0 0 80px -10px rgba(167, 139, 250, 0.55);
+  --shadow-mint: 0 0 60px -10px rgba(74, 222, 128, 0.5);
+  --shadow-elevated: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
 }
 
 @layer base {
@@ -87,15 +95,17 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(circle at 20% 10%, oklch(0.65 0.22 295 / 0.08), transparent 40%),
-      radial-gradient(circle at 80% 60%, oklch(0.82 0.16 200 / 0.08), transparent 40%);
+      radial-gradient(circle at 15% 5%, rgba(167, 139, 250, 0.12), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(74, 222, 128, 0.08), transparent 40%);
     background-attachment: fixed;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+    font-weight: 400;
   }
 }
 
@@ -107,33 +117,56 @@
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--card) 60%, transparent);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
+  background: rgba(22, 33, 62, 0.4);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(167, 139, 250, 0.18);
 }
 
+@utility glass-strong {
+  background: rgba(22, 33, 62, 0.65);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+}
 
+@utility aurora-border {
+  position: relative;
+  background: var(--card);
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
 
+@utility noise {
+  position: relative;
+}
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes aurora-spin {
+  to { transform: rotate(360deg); }
 }
-@keyframes grid-move {
-  0% { background-position: 0 0; }
-  100% { background-position: 60px 60px; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
 }
 
 @utility animate-float {
   animation: float 4s ease-in-out infinite;
 }
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+@utility animate-aurora {
+  animation: aurora-spin 20s linear infinite;
+}
 @utility grid-bg {
   background-image:
-    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(167, 139, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
