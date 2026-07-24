@@ -6,43 +6,65 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({ component: Portfolio });
 
-const stats = [
-  { k: "8+", v: "Years in DevOps" },
-  { k: "3x", v: "AWS Certified" },
-  { k: "3x", v: "Azure Certified" },
-  { k: "60%", v: "Avg. deploy speedup" },
+const impactStats = [
+  { k: "8+", v: "Years shipping cloud", d: "Production infra across EU, UAE & APAC" },
+  { k: "60%", v: "Deploy time cut", d: "CI/CD redesign at EntropyX" },
+  { k: "40%", v: "Faster releases", d: "Rocket SMS monolith → microservices" },
+  { k: "6x", v: "AWS + Azure certs", d: "Plus AWS Community Builder" },
+];
+
+const marqueeTech = [
+  "AWS", "Azure", "Kubernetes", "Terraform", "Docker", "Jenkins",
+  "GitOps", "Prometheus", "Grafana", "Helm", "ELK", "Jaeger",
+  "CloudFormation", "Linux", "Python", "Bash", "Cisco", "VMware",
 ];
 
 const skillGroups = [
   {
     title: "Cloud Platforms",
-    color: "cyan",
-    items: ["AWS (EC2, EKS, S3, RDS, VPC, Lambda, Route53)", "Azure (AKS, VMs, Monitor, Load Balancer)", "AWS Community Builder"],
+    tag: "Primary domain",
+    items: [
+      "AWS — EC2, EKS, S3, RDS, VPC, Lambda, Route53",
+      "Azure — AKS, VMs, Monitor, Load Balancer",
+      "AWS Community Builder",
+    ],
+    accent: "mint",
+    span: "md:col-span-2",
   },
   {
-    title: "Containers & Orchestration",
-    color: "violet",
-    items: ["Kubernetes", "Docker", "AKS / EKS", "Helm", "Azure Container Registry"],
+    title: "Containers",
+    tag: "Runtime",
+    items: ["Kubernetes", "Docker", "AKS / EKS", "Helm", "ACR"],
+    accent: "violet",
+    span: "md:col-span-1",
   },
   {
     title: "CI/CD & GitOps",
-    color: "cyan",
-    items: ["Jenkins", "Azure DevOps", "GitOps workflows", "Automated release pipelines"],
+    tag: "Delivery",
+    items: ["Jenkins", "Azure DevOps", "GitOps workflows", "Release automation"],
+    accent: "violet",
+    span: "md:col-span-1",
   },
   {
     title: "Infrastructure as Code",
-    color: "violet",
+    tag: "Foundation",
     items: ["Terraform", "AWS CloudFormation", "Bash & Python automation"],
+    accent: "mint",
+    span: "md:col-span-2",
   },
   {
     title: "Observability",
-    color: "cyan",
+    tag: "Runtime insight",
     items: ["Prometheus", "Grafana", "ELK / Elasticsearch", "New Relic", "Jaeger"],
+    accent: "mint",
+    span: "md:col-span-2",
   },
   {
     title: "Systems & Networking",
-    color: "violet",
-    items: ["Linux administration", "VMware vSphere, Hyper-V", "CCNA networking", "Active Directory, Office 365"],
+    tag: "Roots",
+    items: ["Linux administration", "VMware, Hyper-V", "CCNA networking", "AD, O365"],
+    accent: "violet",
+    span: "md:col-span-1",
   },
 ];
 
@@ -50,7 +72,8 @@ const experience = [
   {
     company: "IU International University of Applied Sciences",
     role: "Senior DevOps Engineer",
-    period: "Oct 2025 — Present · Munich, Germany",
+    period: "Oct 2025 — Present",
+    location: "Munich, Germany",
     points: [
       "Leading DevOps strategy and cloud reliability for a global online university platform.",
       "Owning CI/CD, Kubernetes and IaC standards across engineering teams.",
@@ -59,7 +82,8 @@ const experience = [
   {
     company: "IU International University of Applied Sciences",
     role: "DevOps Engineer",
-    period: "Dec 2022 — Oct 2025 · Munich, Germany",
+    period: "Dec 2022 — Oct 2025",
+    location: "Munich, Germany",
     points: [
       "Built cloud-native delivery pipelines and Kubernetes platforms for production workloads.",
       "Hardened observability and release automation across multiple product teams.",
@@ -68,7 +92,8 @@ const experience = [
   {
     company: "EntropyX",
     role: "DevOps Engineer",
-    period: "Feb 2022 — Jul 2023 · Dubai, UAE",
+    period: "Feb 2022 — Jul 2023",
+    location: "Dubai, UAE",
     points: [
       "Designed Azure DevOps CI/CD for Docker, lifting deployment efficiency by ~60%.",
       "Migrated Dev & QA workloads from Docker to Azure Kubernetes Service (AKS).",
@@ -79,7 +104,8 @@ const experience = [
   {
     company: "Contour Software",
     role: "Cloud Infrastructure Specialist",
-    period: "Nov 2019 — Nov 2022 · Pakistan",
+    period: "Nov 2019 — Nov 2022",
+    location: "Pakistan",
     points: [
       "Owned enterprise Azure account with critical internal and customer infrastructure.",
       "Designed CI/CD across Jenkins and Azure DevOps based on team-specific use cases.",
@@ -89,7 +115,8 @@ const experience = [
   {
     company: "MasPearls Inc",
     role: "Senior DevOps Engineer",
-    period: "Aug 2021 — Jul 2022 · Pakistan",
+    period: "Aug 2021 — Jul 2022",
+    location: "Pakistan",
     points: [
       "Cut deployment time of the Rocket SMS app by 40% within the first year.",
       "Led the monolith → microservices migration on AWS EKS with Jenkins pipelines.",
@@ -99,7 +126,8 @@ const experience = [
   {
     company: "Royal Cyber Inc.",
     role: "System & Network Administrator",
-    period: "Aug 2017 — Aug 2021 · Karachi",
+    period: "Aug 2017 — Aug 2021",
+    location: "Karachi",
     points: [
       "Ran Windows Server, AD, DNS, DHCP, Exchange, SharePoint and O365 stack.",
       "Managed VMware ESXi hosts, Veeam backup & replication, Cisco networking.",
@@ -108,249 +136,308 @@ const experience = [
 ];
 
 const certifications = [
-  "AWS Community Builder",
-  "AWS Developer — Associate (3x AWS)",
-  "Microsoft Azure (3x)",
-  "MCITP — Microsoft Certified IT Professional",
-  "Cisco Certified Network Associate (CCNA)",
-  "VMware vSphere",
-  "HDI Support Center Analyst (HDI-SCA)",
-  "MS Information Security — NED University",
+  { name: "AWS Community Builder", org: "Amazon Web Services", year: "Active" },
+  { name: "AWS Developer — Associate", org: "3× AWS certifications", year: "AWS" },
+  { name: "Microsoft Azure", org: "3× Azure certifications", year: "Microsoft" },
+  { name: "MCITP", org: "Microsoft Certified IT Professional", year: "Microsoft" },
+  { name: "CCNA", org: "Cisco Certified Network Associate", year: "Cisco" },
+  { name: "VMware vSphere", org: "Virtualization", year: "VMware" },
+  { name: "HDI-SCA", org: "HDI Support Center Analyst", year: "HDI" },
+  { name: "MS Information Security", org: "NED University", year: "Masters" },
 ];
 
 function Portfolio() {
   return (
-    <div id="top" className="relative min-h-screen">
+    <div id="top" className="relative min-h-screen overflow-x-hidden">
       <Navbar />
 
-      {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden">
+      {/* HERO — cinematic full-bleed 3D showreel */}
+      <section className="relative min-h-screen w-full overflow-hidden">
+        {/* 3D scene as background */}
+        <div className="absolute inset-0">
+          <HeroScene />
+        </div>
+        {/* Aurora + grid overlays */}
         <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-hero)" }}
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "var(--gradient-hero)", opacity: 0.85 }}
         />
-        <div className="absolute inset-0 grid-bg opacity-60" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none z-20" />
+        <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-background/70 to-background pointer-events-none z-10" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background/80 to-transparent pointer-events-none z-10" />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-40 pb-24 md:pt-48 grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center">
+        {/* Hero content */}
+        <div className="relative z-20 mx-auto max-w-7xl px-6 pt-40 pb-32 md:pt-52">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative z-10"
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="max-w-5xl"
           >
-
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse" />
-              Available for Senior / Staff DevOps roles · Munich · Remote EU
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full glass px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+                <span className="relative rounded-full h-2 w-2 bg-primary" />
+              </span>
+              Available · Senior / Staff DevOps · Munich · Remote EU
             </div>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight">
-              Waqas Ahmed<span className="text-cyan">.</span>
+
+            <h1 className="font-display font-normal leading-[0.9] tracking-tight text-[clamp(3.5rem,11vw,10rem)]">
+              Waqas
+              <br />
+              <span className="italic text-gradient">Ahmed.</span>
             </h1>
-            <p className="mt-4 text-2xl md:text-4xl font-display font-medium">
-              I engineer <span className="text-gradient">cloud platforms</span> that
-              ship faster and never sleep.
+
+            <p className="mt-10 max-w-3xl font-display text-3xl md:text-5xl leading-[1.1] text-foreground/95">
+              I engineer <span className="italic text-accent">cloud platforms</span> that ship
+              faster, scale sideways, and <span className="italic text-primary">never sleep</span>.
             </p>
-            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-              Senior DevOps Engineer with 8+ years designing, automating and running
-              production systems on AWS and Azure. Kubernetes, Terraform, GitOps and
-              CI/CD are my daily tools — reliability is the outcome.
+
+            <p className="mt-8 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed font-sans font-light">
+              Senior DevOps Engineer with 8+ years designing, automating and running production
+              systems on AWS and Azure. Kubernetes, Terraform, GitOps and CI/CD are my daily tools —
+              reliability is the outcome.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+
+            <div className="mt-12 flex flex-wrap gap-4">
               <button
                 type="button"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="group relative rounded-full bg-foreground text-background px-6 py-3 text-sm font-semibold shadow-[var(--shadow-cyan)] hover:shadow-[var(--shadow-glow)] transition-shadow"
+                className="group relative rounded-full bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold font-sans shadow-[var(--shadow-mint)] hover:shadow-[var(--shadow-glow)] transition-all"
               >
-                Book an interview →
+                <span className="relative z-10">Book an interview →</span>
               </button>
               <button
                 type="button"
                 onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
-                className="rounded-full border border-border bg-white/5 backdrop-blur px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors"
+                className="rounded-full glass-strong px-8 py-4 text-sm font-semibold font-sans hover:bg-white/10 transition-colors"
               >
                 See the work
               </button>
             </div>
-
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
-              {stats.map((s) => (
-                <div key={s.v}>
-                  <div className="font-display text-3xl md:text-4xl font-semibold text-gradient">
-                    {s.k}
-                  </div>
-                  <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
-                    {s.v}
-                  </div>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
+          {/* Scroll hint */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative h-[420px] sm:h-[500px] lg:h-[560px] hidden sm:block"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="absolute bottom-16 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-muted-foreground font-mono text-[10px] uppercase tracking-[0.3em]"
           >
-            <div
-              className="absolute inset-6 rounded-full blur-3xl opacity-30 pointer-events-none"
-              style={{ background: "var(--gradient-text)" }}
-            />
-            <HeroScene />
-
+            <span>Scroll to explore</span>
+            <div className="h-10 w-px bg-gradient-to-b from-accent to-transparent" />
           </motion.div>
         </div>
       </section>
 
-
-      {/* ABOUT */}
-      <Section
-        id="about"
-        eyebrow="About"
-        title={<>Cloud-native by craft.<br />Reliability by obsession.</>}
-      >
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-5 text-lg text-muted-foreground leading-relaxed">
-            <p>
-              I'm a DevOps consultant and cloud specialist based in Munich, with{" "}
-              <span className="text-foreground">8+ years</span> designing and running
-              production infrastructure for SaaS, education and enterprise platforms
-              across Europe, the UAE and South Asia.
-            </p>
-            <p>
-              I've moved monoliths onto Kubernetes, cut deploy times by 60%, migrated
-              enterprise Azure estates, and built CI/CD pipelines that engineering
-              teams actually enjoy using. I care about the boring parts — SLOs,
-              rollbacks, cost, on-call sanity — because that's where great products
-              are quietly held up.
-            </p>
-            <p>
-              I hold an <span className="text-foreground">MS in Information Security</span>{" "}
-              from NED University and I'm an{" "}
-              <span className="text-foreground">AWS Community Builder</span>.
-            </p>
-          </div>
-          <div className="glass rounded-2xl p-6 space-y-4">
-            <div>
-              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                Based in
-              </div>
-              <div className="mt-1 font-display text-xl">Munich, Bavaria 🇩🇪</div>
-            </div>
-            <div>
-              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                Currently
-              </div>
-              <div className="mt-1 font-display text-xl">Senior DevOps Engineer @ IU</div>
-            </div>
-            <div>
-              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                Open to
-              </div>
-              <div className="mt-1 font-display text-xl">Senior · Staff · Lead roles</div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SKILLS */}
-      <Section
-        id="skills"
-        eyebrow="The Stack"
-        title={<>Tools I <span className="text-gradient">reach for</span> before coffee.</>}
-        intro="A pragmatic, battle-tested toolchain for building and running modern cloud platforms."
-      >
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map((g, i) => (
-            <motion.div
-              key={g.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative rounded-2xl border border-border bg-card p-6 overflow-hidden hover:border-white/20 transition-colors"
+      {/* MARQUEE — tech stack ribbon */}
+      <section className="relative border-y border-border py-8 overflow-hidden glass">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...marqueeTech, ...marqueeTech].map((t, i) => (
+            <span
+              key={i}
+              className="mx-8 font-display italic text-3xl md:text-5xl text-foreground/40 hover:text-accent transition-colors"
             >
-              <div
-                className="absolute -top-16 -right-16 h-40 w-40 rounded-full opacity-0 group-hover:opacity-30 blur-3xl transition-opacity"
-                style={{
-                  background:
-                    g.color === "cyan" ? "var(--cyan)" : "var(--violet)",
-                }}
-              />
-              <div className="relative">
-                <div
-                  className="font-mono text-xs uppercase tracking-widest mb-3"
-                  style={{
-                    color: g.color === "cyan" ? "var(--cyan)" : "var(--violet)",
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")} / {g.title}
-                </div>
-                <ul className="space-y-2 text-foreground/90">
-                  {g.items.map((it) => (
-                    <li key={it} className="flex gap-2 text-sm">
-                      <span className="text-muted-foreground">▸</span>
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+              {t} <span className="text-primary not-italic mx-4">✦</span>
+            </span>
           ))}
         </div>
+      </section>
+
+      {/* ABOUT — editorial */}
+      <Section
+        id="about"
+        eyebrow="01 · About"
+        title={
+          <>
+            Cloud-native by <span className="italic text-gradient">craft</span>.
+            <br />
+            Reliability by <span className="italic text-accent">obsession</span>.
+          </>
+        }
+      >
+        <div className="grid md:grid-cols-5 gap-10 items-start">
+          <div className="md:col-span-3 space-y-6 text-xl text-muted-foreground leading-relaxed font-light">
+            <p>
+              I'm a DevOps consultant and cloud specialist based in Munich, with{" "}
+              <span className="text-foreground italic font-display text-2xl">8+ years</span>{" "}
+              designing and running production infrastructure for SaaS, education and enterprise
+              platforms across Europe, the UAE and South Asia.
+            </p>
+            <p>
+              I've moved monoliths onto Kubernetes, cut deploy times by 60%, migrated enterprise
+              Azure estates, and built CI/CD pipelines engineering teams actually enjoy using. I
+              care about the boring parts —{" "}
+              <span className="text-foreground">SLOs, rollbacks, cost, on-call sanity</span> —
+              because that's where great products are quietly held up.
+            </p>
+            <p>
+              MS in Information Security from NED University.{" "}
+              <span className="text-accent italic font-display text-2xl">AWS Community Builder</span>.
+            </p>
+          </div>
+          <aside className="md:col-span-2 glass-strong rounded-3xl p-8 space-y-6">
+            {[
+              { l: "Based in", v: "Munich, Bavaria" },
+              { l: "Currently", v: "Senior DevOps @ IU" },
+              { l: "Open to", v: "Senior · Staff · Lead" },
+              { l: "Response time", v: "Within 24 hours" },
+            ].map((row) => (
+              <div key={row.l} className="border-b border-border/60 pb-4 last:border-0 last:pb-0">
+                <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  {row.l}
+                </div>
+                <div className="mt-1.5 font-display text-2xl">{row.v}</div>
+              </div>
+            ))}
+          </aside>
+        </div>
       </Section>
 
-      {/* EXPERIENCE */}
-      <Section
-        id="experience"
-        eyebrow="Experience"
-        title={<>A timeline of <span className="text-gradient">shipped systems</span>.</>}
-        intro="From ISP data centers to global cloud platforms — a decade of hands-on infrastructure."
-      >
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan/60 via-violet/40 to-transparent" />
-          <div className="space-y-12">
-            {experience.map((e, i) => (
+      {/* IMPACT — full-width dark band with huge numbers */}
+      <section id="impact" className="relative py-32 px-6 border-y border-border">
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{ background: "var(--gradient-mesh)" }}
+        />
+        <div className="relative mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 max-w-3xl"
+          >
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_var(--accent)]" />
+              02 · Impact
+            </div>
+            <h2 className="font-display text-5xl md:text-7xl leading-[1.02]">
+              Numbers that <span className="italic text-gradient">move</span> the roadmap.
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-3xl overflow-hidden glass">
+            {impactStats.map((s, i) => (
               <motion.div
-                key={e.role + e.period}
-                initial={{ opacity: 0, y: 30 }}
+                key={s.v}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55 }}
-                className={`relative md:grid md:grid-cols-2 md:gap-12 ${
-                  i % 2 ? "md:[&>*:first-child]:col-start-2" : ""
-                }`}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-background/60 p-8 md:p-10 group hover:bg-card/60 transition-colors"
+              >
+                <div className="font-display text-6xl md:text-8xl leading-none text-gradient">
+                  {s.k}
+                </div>
+                <div className="mt-4 font-display text-xl italic text-foreground/90">{s.v}</div>
+                <div className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.d}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SKILLS — bento */}
+      <Section
+        id="skills"
+        eyebrow="03 · The Stack"
+        title={
+          <>
+            Tools I <span className="italic text-gradient">reach for</span> before coffee.
+          </>
+        }
+        intro="A pragmatic, battle-tested toolchain for building and running modern cloud platforms."
+      >
+        <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
+          {skillGroups.map((g, i) => {
+            const accentColor = g.accent === "mint" ? "var(--primary)" : "var(--accent)";
+            return (
+              <motion.div
+                key={g.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className={`group relative rounded-3xl border border-border glass-strong p-8 overflow-hidden hover:border-white/25 transition-all ${g.span}`}
               >
                 <div
-                  className={`relative pl-12 md:pl-0 ${
-                    i % 2 ? "md:pl-12" : "md:pr-12 md:text-right"
-                  }`}
-                >
-                  <span
-                    className={`absolute left-2.5 md:left-auto top-2 h-3 w-3 rounded-full bg-cyan shadow-[0_0_20px_var(--cyan)] ${
-                      i % 2 ? "md:-left-[7px]" : "md:-right-[7px]"
-                    }`}
-                  />
-                  <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                    {e.period}
+                  className="absolute -top-24 -right-24 h-56 w-56 rounded-full opacity-0 group-hover:opacity-30 blur-3xl transition-opacity duration-700"
+                  style={{ background: accentColor }}
+                />
+                <div className="relative flex flex-col h-full">
+                  <div
+                    className="font-mono text-[10px] uppercase tracking-[0.28em] mb-4"
+                    style={{ color: accentColor }}
+                  >
+                    {String(i + 1).padStart(2, "0")} · {g.tag}
                   </div>
-                  <h3 className="mt-2 font-display text-2xl font-semibold">
-                    {e.role}
-                  </h3>
-                  <div className="text-cyan">{e.company}</div>
-                </div>
-                <div className={`mt-4 md:mt-0 pl-12 md:pl-0 ${i % 2 ? "" : ""}`}>
-                  <ul className="glass rounded-2xl p-5 space-y-2 text-sm text-muted-foreground">
-                    {e.points.map((p) => (
-                      <li key={p} className="flex gap-2">
-                        <span className="text-violet">◆</span>
-                        <span className="text-foreground/80">{p}</span>
+                  <h3 className="font-display text-4xl mb-6 leading-tight">{g.title}</h3>
+                  <ul className="space-y-2.5 text-foreground/85 mt-auto">
+                    {g.items.map((it) => (
+                      <li key={it} className="flex gap-3 text-[15px] font-sans">
+                        <span style={{ color: accentColor }}>—</span>
+                        <span className="font-light">{it}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </motion.div>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* EXPERIENCE — journey */}
+      <Section
+        id="experience"
+        eyebrow="04 · Journey"
+        title={
+          <>
+            A timeline of <span className="italic text-gradient">shipped systems</span>.
+          </>
+        }
+        intro="From ISP data centers to global cloud platforms — a decade of hands-on infrastructure."
+      >
+        <div className="relative">
+          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent" />
+          <div className="space-y-16">
+            {experience.map((e, i) => (
+              <motion.article
+                key={e.role + e.period}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
+                className="relative pl-16 md:pl-24"
+              >
+                <span className="absolute left-2 md:left-6 top-3 h-4 w-4 rounded-full bg-primary shadow-[0_0_24px_var(--primary)]">
+                  <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40" />
+                </span>
+                <div className="grid md:grid-cols-5 gap-8 items-start">
+                  <header className="md:col-span-2">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                      {e.period}
+                    </div>
+                    <h3 className="mt-3 font-display text-3xl md:text-4xl leading-tight">
+                      {e.role}
+                    </h3>
+                    <div className="mt-2 text-accent italic font-display text-xl">
+                      {e.company}
+                    </div>
+                    <div className="mt-1 text-sm text-muted-foreground font-mono">
+                      {e.location}
+                    </div>
+                  </header>
+                  <ul className="md:col-span-3 glass-strong rounded-2xl p-6 space-y-3">
+                    {e.points.map((p) => (
+                      <li key={p} className="flex gap-3 text-[15px] text-foreground/85 font-light">
+                        <span className="text-primary mt-1.5 h-1 w-3 shrink-0 bg-primary rounded-full" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -359,64 +446,80 @@ function Portfolio() {
       {/* CERTIFICATIONS */}
       <Section
         id="certifications"
-        eyebrow="Credentials"
-        title={<>Certified where it <span className="text-gradient">counts</span>.</>}
+        eyebrow="05 · Credentials"
+        title={
+          <>
+            Certified where it <span className="italic text-gradient">counts</span>.
+          </>
+        }
       >
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {certifications.map((c, i) => (
             <motion.div
-              key={c}
+              key={c.name}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              className="rounded-xl border border-border bg-card p-5 hover:border-cyan/50 transition-colors"
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="group relative rounded-2xl border border-border glass p-6 hover:border-primary/50 transition-all"
             >
-              <div className="font-mono text-[10px] uppercase tracking-widest text-cyan mb-2">
-                Cert {String(i + 1).padStart(2, "0")}
+              <div className="flex items-start justify-between mb-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  {c.year}
+                </span>
               </div>
-              <div className="font-display text-base font-medium leading-snug">
-                {c}
+              <div className="font-display text-2xl leading-tight mb-2 group-hover:text-gradient transition-all">
+                {c.name}
               </div>
+              <div className="text-sm text-muted-foreground font-light">{c.org}</div>
             </motion.div>
           ))}
         </div>
       </Section>
 
       {/* CONTACT */}
-      <section id="contact" className="relative py-32 px-6 overflow-hidden">
+      <section
+        id="contact"
+        className="relative py-40 px-6 overflow-hidden border-t border-border"
+      >
         <div
-          className="absolute inset-0 opacity-60"
-          style={{ background: "var(--gradient-hero)" }}
+          className="absolute inset-0"
+          style={{ background: "var(--gradient-hero)", opacity: 0.9 }}
         />
-        <div className="relative mx-auto max-w-4xl text-center">
+        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+        <div className="relative mx-auto max-w-5xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="mb-4 font-mono text-xs uppercase tracking-widest text-cyan">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full glass-strong px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" />
               Let's build
             </div>
-            <h2 className="font-display text-4xl md:text-6xl font-semibold leading-tight">
-              Have a platform that needs to <span className="text-gradient">scale, ship, and stay up</span>?
+            <h2 className="font-display text-5xl md:text-8xl leading-[1.02] tracking-tight">
+              Have a platform that needs to{" "}
+              <span className="italic text-gradient">scale, ship, and stay up</span>?
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              I'm open to Senior, Staff and Lead DevOps / Platform Engineering roles in
-              Munich, across the EU, and remote. Reach out — I reply fast.
+            <p className="mt-8 text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+              I'm open to Senior, Staff and Lead DevOps / Platform Engineering roles in Munich,
+              across the EU, and remote. Reach out — I reply within a day.
             </p>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <div className="mt-12 flex flex-wrap justify-center gap-4">
               <a
                 href="mailto:waq.ahmed01@gmail.com"
-                className="rounded-full bg-foreground text-background px-6 py-3 text-sm font-semibold shadow-[var(--shadow-cyan)] hover:shadow-[var(--shadow-glow)] transition-shadow"
+                className="rounded-full bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold font-sans shadow-[var(--shadow-mint)] hover:shadow-[var(--shadow-glow)] transition-shadow"
               >
                 waq.ahmed01@gmail.com
               </a>
               <a
                 href="tel:+491639297406"
-                className="rounded-full border border-border bg-white/5 px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors"
+                className="rounded-full glass-strong px-8 py-4 text-sm font-semibold font-sans hover:bg-white/10 transition-colors"
               >
                 +49 163 929 7406
               </a>
@@ -424,7 +527,7 @@ function Portfolio() {
                 href="https://www.linkedin.com/in/waqas-ahmed-tech-expert"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-border bg-white/5 px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors"
+                className="rounded-full glass-strong px-8 py-4 text-sm font-semibold font-sans hover:bg-white/10 transition-colors"
               >
                 LinkedIn ↗
               </a>
@@ -433,10 +536,15 @@ function Portfolio() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-8 px-6">
-        <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-          <div>© {new Date().getFullYear()} Waqas Ahmed · Built with obsession in Munich.</div>
-          <div className="font-mono text-xs">DevOps · Cloud · Kubernetes · Terraform</div>
+      {/* FOOTER */}
+      <footer className="border-t border-border py-10 px-6">
+        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground font-mono">
+          <div>
+            © {new Date().getFullYear()} Waqas Ahmed · Built with obsession in Munich.
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.3em]">
+            DevOps · Cloud · Kubernetes · Terraform
+          </div>
         </div>
       </footer>
     </div>
